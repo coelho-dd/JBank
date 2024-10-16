@@ -11,11 +11,38 @@ abstract class Account {
         bankStatements = new ArrayList<>();
     }
 
-    // TODO: The following 3 methods will have the exact same logic in each subclass!!! [Solve this]
-    abstract boolean withdraw(double value);
-    abstract boolean deposit(double value);
-    abstract boolean transfer(Account acc, double value);
+    protected boolean withdraw(double value) {
+        if(value > this.getBalance()) {
+            System.out.println("Please provide a valid number to withdraw.");
+            return false;
+        }
+        this.setBalance(this.getBalance() - value);
+        System.out.println("Your withdraw was successfully executed.");
+        return true;
+    }
 
+    protected boolean deposit(double value) {
+        if(value > 0) {
+            this.setBalance(this.getBalance() + value);
+            System.out.println("Your deposit was successfully executed.");
+            return true;
+        }
+        System.out.println("Please provide a valid number to deposit.");
+        return false;
+    }
+
+    protected boolean transfer(Account acc, double value) {
+        if(value > 0) {
+            acc.setBalance(acc.getBalance() + value);
+            this.setBalance(this.getBalance() - value);
+            System.out.println("The transfer was executed successfully.");
+            return true;
+        }
+        System.out.println("Please provide a valid number to transfer.");
+        return false;
+    }
+
+    // getters and setters
     protected User getAccountOwner() {
         return accountOwner;
     }
