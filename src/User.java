@@ -1,4 +1,5 @@
 public class User {
+    private Account account;
     private String name;
     private String email;
     private String password;
@@ -9,28 +10,38 @@ public class User {
         this.password = password;
     }
 
+    //TODO: Set up getters and setters to return correct values
+
     // getters and setters
-    public String getName() {
+    protected String getName() {
         return name;
     }
 
-    public String getEmail() {
+    protected String getEmail() {
         return email;
     }
 
-    public String getPassword() {
+    protected String getPassword() {
         return password;
     }
 
-    public void setName(String name) {
+    protected Account getAccount() {
+        return account;
+    }
+
+    protected void setName(String name) {
         this.name = name;
     }
 
-    public void setEmail(String email) {
+    protected void setEmail(String email) {
         this.email = email;
     }
 
-    public void setPassword(String password) {
+    protected void setPassword(String password) {
         this.password = password;
+    }
+
+    protected void setAccount(Account account) {
+        this.account = account;
     }
 }

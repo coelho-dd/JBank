@@ -7,6 +7,7 @@ abstract class Account {
 
     public Account(User accountOwner, double balance) {
         this.accountOwner = accountOwner;
+        accountOwner.setAccount(this);
         this.balance = balance;
         bankStatements = new ArrayList<>();
     }
@@ -42,9 +43,11 @@ abstract class Account {
         return false;
     }
 
+    //TODO: Set up getters and setters to return correct values
+
     // getters and setters
-    protected User getAccountOwner() {
-        return accountOwner;
+    protected String getAccountOwner() {
+        return accountOwner.getName();
     }
 
     protected double getBalance() {
