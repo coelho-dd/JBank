@@ -3,7 +3,7 @@ import java.util.ArrayList;
 abstract class Account {
     private User accountOwner;
     private double balance;
-    private ArrayList<Double> bankStatements; // An ArrayList in Java is the implementation of a dynamic array(since we do not know the size from the start)
+    private ArrayList<Double> bankStatements; // ArrayList = dynamic array(since we do not know the exact amount it will take)
 
     public Account(User accountOwner, double balance) {
         this.accountOwner = accountOwner;
@@ -29,5 +29,9 @@ abstract class Account {
 
     protected void setAccountOwner(User accountOwner) {
         this.accountOwner = accountOwner;
+    }
+
+    protected void setBalance(double value) {
+        this.balance = value;
     }
 }
