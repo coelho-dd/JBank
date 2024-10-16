@@ -3,7 +3,7 @@ import java.util.ArrayList;
 abstract class Account {
     private User accountOwner;
     private double balance;
-    private ArrayList<Double> bankStatements; // ArrayList = dynamic array(since we do not know the exact amount it will take)
+    private ArrayList<Double> bankStatements; // ArrayList = dynamic array(since we do not know the exact amount of elements)
 
     public Account(User accountOwner, double balance) {
         this.accountOwner = accountOwner;
@@ -11,6 +11,7 @@ abstract class Account {
         bankStatements = new ArrayList<>();
     }
 
+    // TODO: The following 3 methods will have the exact same logic in each subclass!!! [Solve this]
     abstract boolean withdraw(double value);
     abstract boolean deposit(double value);
     abstract boolean transfer(Account acc, double value);
