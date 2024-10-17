@@ -6,7 +6,7 @@ public class CheckingsAccount extends Account {
 
 	public boolean takeLoan(double value) {
 		if(this.getBalance() < 1000) {
-			System.out.println("Sorry, ou do not have the minimum amount to take a loan.");
+			System.out.println("Sorry, you do not have the minimum amount to take a loan.");
 			return false;
 		}
 		this.setBalance(this.getBalance() + value);

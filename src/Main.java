@@ -106,16 +106,16 @@ public class Main {
                     userChoice(user, savingsAccount, checkingsAccount, scanner, "transfer");
                     break;
                 case "6":
-                    // check banking statements
+                    userChoice(user, savingsAccount, checkingsAccount, scanner, "bstatements");
                     break;
                 case "7":
-                    // check balance
+                    userChoice(user, savingsAccount, checkingsAccount, scanner, "balance");
                     break;
                 case "8":
-                    // simulate loan
+                    userChoice(user, savingsAccount, checkingsAccount, scanner, "loan");
                     break;
                 case "9":
-                    // simulate interest operation
+                    userChoice(user, savingsAccount, checkingsAccount, scanner, "interest");
                     break;
                 case "0":
                     System.out.println("Logging you off...");
@@ -143,26 +143,60 @@ public class Main {
             return;
         }
 
-        System.out.println("What is the amount:");
-        amount = scanner.nextDouble();
-        scanner.nextLine();
-
-        // detecting the account and the operation required [NOT FINISHED]
+        // detecting the account, the operation and executing it [NOT FINISHED] TODO: Apply transfer functionality
+        // this is far from ideal code I know :)
+        // 1- Savings Account | 2- Checkings Account
         if(whichAccount.equals("1")) {
             if(operation.equals("deposit")) {
+                System.out.println("What is the amount:");
+                amount = scanner.nextDouble();
+                scanner.nextLine();
                 savingsAccount.deposit(amount);
             } else if(operation.equals("withdraw")) {
+                System.out.println("What is the amount:");
+                amount = scanner.nextDouble();
+                scanner.nextLine();
                 savingsAccount.withdraw(amount);
             } else if(operation.equals("transfer")) {
-                // not there yet
+                // still have to apply this functionality
+            } else if(operation.equals("bstatements")) {
+                savingsAccount.getBankStatements();
+            } else if(operation.equals("balance")) {
+                double balance = savingsAccount.getBalance();
+                System.out.println("Your balance is $" + balance);
+            } else if(operation.equals("loan")) {
+                System.out.println("It's not possible to take loans with your savings account, only with your checkings account.");
+            } else if(operation.equals("interest")) {
+                System.out.println("What would be the amount you want to apply interest on?");
+                double interestAmount = scanner.nextDouble();
+                System.out.println("What would be the time(in months)?");
+                int interestMonths = scanner.nextInt();
+                savingsAccount.interestSim(interestMonths, interestAmount);
             }
         } else if(whichAccount.equals("2")) {
             if(operation.equals("deposit")) {
+                System.out.println("What is the amount:");
+                amount = scanner.nextDouble();
+                scanner.nextLine();
                 checkingsAccount.deposit(amount);
             } else if(operation.equals("withdraw")) {
+                System.out.println("What is the amount:");
+                amount = scanner.nextDouble();
+                scanner.nextLine();
                 checkingsAccount.withdraw(amount);
             } else if(operation.equals("transfer")) {
-                // not there yet
+                // still have to apply this functionality
+            } else if(operation.equals("bstatements")) {
+                checkingsAccount.getBankStatements();
+            } else if(operation.equals("balance")) {
+                double balance = checkingsAccount.getBalance();
+                System.out.println("Your balance is $" + balance);
+            } else if(operation.equals("loan")) {
+                System.out.println("What would be the amount of the loan?");
+                double loanAmount = scanner.nextDouble();
+                checkingsAccount.takeLoan(loanAmount);
+            } else if(operation.equals("interest")) {
+                System.out.println("It's not possible to apply interest with your checkings account, only with your savings account.");
             }
         }
     }
