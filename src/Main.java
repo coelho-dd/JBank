@@ -53,6 +53,8 @@ public class Main {
 
     public static void menu(User user, Scanner scanner) {
         String input;
+        SavingsAccount savingsAccount = null;
+        CheckingsAccount checkingsAccount = null;
 
         System.out.println("ACCOUNT MENU");
         System.out.println("=====================================\n");
@@ -73,37 +75,94 @@ public class Main {
             input = scanner.nextLine();
             switch(input) {
                 case "1":
-                    System.out.println("created a savings account.");
+                    if(savingsAccount == null) {
+                        System.out.println("Please enter the initial balance for your saving account:");
+                        double initialBalance = scanner.nextDouble();
+                        scanner.nextLine();
+                        savingsAccount = new SavingsAccount(user, initialBalance);
+                        System.out.println("Your savings account was created successfully.");
+                    } else {
+                        System.out.println("You already have an account.");
+                    }
                     break;
                 case "2":
-                    System.out.println("created checking account");
+                    if(checkingsAccount == null) {
+                        System.out.println("Please enter the initial balance for your checking account:");
+                        double initialBalance = scanner.nextDouble();
+                        scanner.nextLine();
+                        checkingsAccount = new CheckingsAccount(user, initialBalance);
+                        System.out.println("Your checking account was created successfully.");
+                    } else {
+                        System.out.println("You already have an account.");
+                    }
                     break;
                 case "3":
-                    System.out.println("deposited");
+                    userChoice(user, savingsAccount, checkingsAccount, scanner, "deposit");
                     break;
                 case "4":
-                    System.out.println("just did that");
+                    userChoice(user, savingsAccount, checkingsAccount, scanner, "withdraw");
                     break;
                 case "5":
-                    System.out.println("yes");
+                    userChoice(user, savingsAccount, checkingsAccount, scanner, "transfer");
                     break;
                 case "6":
-                    System.out.println("did it again");
+                    // check banking statements
                     break;
                 case "7":
-                    System.out.println("another one");
+                    // check balance
                     break;
                 case "8":
-                    System.out.println("just like the last one");
+                    // simulate loan
                     break;
                 case "9":
-                    System.out.println("the last one");
+                    // simulate interest operation
                     break;
                 case "0":
                     System.out.println("Logging you off...");
                     System.exit(0);
                 default:
                     System.out.println("Option not valid. Try again");
+            }
+        }
+    }
+
+    public static void userChoice(User user, SavingsAccount savingsAccount, CheckingsAccount checkingsAccount, Scanner scanner, String operation) {
+        String whichAccount;
+        double amount;
+
+        if(savingsAccount == null && checkingsAccount == null) {
+            System.out.println("You don't have any accounts to perform this operation.");
+            return;
+        }
+
+        System.out.println("Which account would you like to perform this operation on: 1- Savings Account / 2- Checkings Account");
+        whichAccount = scanner.nextLine();
+
+        if((whichAccount.equals("1") && savingsAccount == null) || (whichAccount.equals("2") && checkingsAccount == null)) {
+            System.out.println("This account does not exist. Please create the account first.");
+            return;
+        }
+
+        System.out.println("What is the amount:");
+        amount = scanner.nextDouble();
+        scanner.nextLine();
+
+        // detecting the account and the operation required [NOT FINISHED]
+        if(whichAccount.equals("1")) {
+            if(operation.equals("deposit")) {
+                savingsAccount.deposit(amount);
+            } else if(operation.equals("withdraw")) {
+                savingsAccount.withdraw(amount);
+            } else if(operation.equals("transfer")) {
+                // not there yet
+            }
+        } else if(whichAccount.equals("2")) {
+            if(operation.equals("deposit")) {
+                checkingsAccount.deposit(amount);
+            } else if(operation.equals("withdraw")) {
+                checkingsAccount.withdraw(amount);
+            } else if(operation.equals("transfer")) {
+                // not there yet
             }
         }
     }
