@@ -23,26 +23,27 @@ public class Main {
     }
 
     public static void registration() {
-        String name;
-        String email;
-        String password;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Please provide the following data:");
-        System.out.println("Name:");
-        name = scanner.nextLine();
-        name = validateInput(name);
+        String name = validateInput("Name", scanner);
+        String email = validateInput("Email", scanner);
+        String password = validateInput("Password", scanner);
 
-        // WTH am I doing lmao
+        User user = new User(name, email, password);
+        System.out.println("Registration successfull for " + user.getName());
+
+        scanner.close();
     }
 
-    public static String validateInput(String input) {
-        Scanner scanner = new Scanner(System.in);
-        if(input.isBlank()) {
-            System.out.println("Please provide a valid input:");
+    public static String validateInput(String data, Scanner scanner) {
+        String input;
+        do {
+            System.out.println("Please provide your " + data + ":");
             input = scanner.nextLine();
-            validateInput(input);
-        }
+            if(input.isBlank()) {
+                System.out.println(data + " cannot be blank. Please provide a valid input.");
+            }
+        } while(input.isBlank());
         return input;
     }
 }
