@@ -1,6 +1,6 @@
 # JBANK - Simulador de Sistema Bancário 🏦
 
-### Bem vindo ao JBANK!
+### Bem vindo ao JBANK! (v1.0)
 Este é um projeto de simulação de sistema bancário que oferece a você a oportunidade de explorar como funcionam as operações em um banco de forma interativa e prática.
 Desenvolvido em Java, o sistema permite que os usuários criem contas, depositem e saquem dinheiro, visualizem extratos bancários, simulem empréstimos e calculem os rendimentos de uma conta poupança ao longo do tempo.
 
