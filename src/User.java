@@ -10,8 +10,6 @@ public class User {
         this.password = password;
     }
 
-    //TODO: Set up getters and setters to return correct values
-
     // getters and setters
     protected String getName() {
         return name;

@@ -43,8 +43,6 @@ abstract class Account {
         return false;
     }
 
-    //TODO: Set up getters and setters to return correct values
-
     // getters and setters
     protected String getAccountOwner() {
         return accountOwner.getName();
